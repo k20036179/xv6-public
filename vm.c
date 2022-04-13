@@ -395,14 +395,15 @@ copyout(pde_t *pgdir, uint va, void *p, uint len)
 int
 mprotect(void *addr, int len) {
   struct proc *proc = myproc();
+
   //check addr is page aligned
   if((int) (((int) addr) % PGSIZE) != 0) {
     cprintf("Address is not page aligned: %p", addr);
     return -1;
   }
-  // check addr points to a region in the address space
+  //check addr points to a region in the address space
   if(len <= 0 || (int) addr + len > proc->vlimit) {
-    cprintf("Not in address space %p", addr);
+    cprintf("Not in address space: %p", addr);
     return -1;
   }
 
@@ -410,11 +411,9 @@ mprotect(void *addr, int len) {
   pte_t *pte;
   int counter;
 
-  for(counter = (int) addr; counter < (int) addr + (len) *PGSIZE; counter += PGSIZE) {
+  for(counter = (int) addr; counter < (int) addr + len; counter += PGSIZE) {
     pte = walkpgdir(proc->pgdir,(void *) counter, 0);
-    *pte &= 0xfffffff9;
     *pte = (*pte) & (~PTE_W);
-    *pte |= (PTE_P | PTE_U);
     cprintf("\nPTE : 0x%p\n", *pte);
   }
 
@@ -428,22 +427,24 @@ mprotect(void *addr, int len) {
 int
 munprotect(void *addr, int len) {
   struct proc *proc = myproc();
+
   //check addr is page aligned
   if((int) (((int) addr) % PGSIZE) != 0) {
     cprintf("Address is not page aligned: %p", addr);
     return -1;
   }
-  // check addr points to a region in the address space
+  //check addr points to a region in the address space
   if(len <= 0 || (int) addr + len > proc->vlimit) {
-    cprintf("Not in address space %p", addr);
+    cprintf("Not in address space: %p", addr);
     return -1;
   }
 
   pte_t *pte;
   int counter;
-  for(counter = (int) addr; counter < (int) addr + (len) *PGSIZE; counter += PGSIZE) {
+  for(counter = (int) addr; counter < (int) addr + len; counter += PGSIZE) {
     pte = walkpgdir(proc->pgdir,(void *) counter, 0);
     *pte = (*pte) | (PTE_W); 
+    cprintf("\nPTE : 0x%p\n", *pte);
   }
   //flush tlb
   lcr3(V2P(proc->pgdir));

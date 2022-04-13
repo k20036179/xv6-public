@@ -13,7 +13,7 @@ Linker script and memory map
 
                 0x0000000080100000                . = 0x80100000
 
-.text           0x0000000080100000     0x742d load address 0x0000000000100000
+.text           0x0000000080100000     0x7439 load address 0x0000000000100000
  *(.text .stub .text.* .gnu.linkonce.t.*)
  .text          0x0000000080100000       0x34 entry.o
                 0x0000000080100000                multiboot_header
@@ -465,7 +465,7 @@ Linker script and memory map
                 0x000000008010687f                vector254
                 0x000000008010688b                vector255
  *fill*         0x0000000080106897        0x9 
- .text          0x00000000801068a0      0xb71 vm.o
+ .text          0x00000000801068a0      0xb7d vm.o
                 0x0000000080106a40                seginit
                 0x0000000080106ad0                switchkvm
                 0x0000000080106ae0                switchuvm
@@ -481,13 +481,13 @@ Linker script and memory map
                 0x0000000080107160                uva2ka
                 0x00000000801071b0                copyout
                 0x0000000080107280                mprotect
-                0x0000000080107360                munprotect
+                0x0000000080107350                munprotect
  .text.unlikely
-                0x0000000080107411       0x1c vm.o
+                0x000000008010741d       0x1c vm.o
                 [!provide]                        PROVIDE (etext = .)
 
-.iplt           0x000000008010742d        0x0 load address 0x000000000010742d
- .iplt          0x000000008010742d        0x0 entry.o
+.iplt           0x0000000080107439        0x0 load address 0x0000000000107439
+ .iplt          0x0000000080107439        0x0 entry.o
 
 .rodata         0x0000000080107440      0xa1c load address 0x0000000000107440
  *(.rodata .rodata.* .gnu.linkonce.r.*)
@@ -557,9 +557,9 @@ Linker script and memory map
  .rodata.str1.1
                 0x0000000080107ce8        0x8 uart.o
  .rodata.str1.1
-                0x0000000080107cf0      0x125 vm.o
-                                        0x12b (size before relaxing)
- *fill*         0x0000000080107e15        0x3 
+                0x0000000080107cf0      0x126 vm.o
+                                        0x12c (size before relaxing)
+ *fill*         0x0000000080107e16        0x2 
  .rodata.str1.4
                 0x0000000080107e18       0x44 vm.o
 
@@ -734,7 +734,7 @@ LOAD initcode
 LOAD entryother
 OUTPUT(kernel elf32-i386)
 
-.debug_line     0x0000000000000000     0x6d47
+.debug_line     0x0000000000000000     0x6d3b
  .debug_line    0x0000000000000000       0x41 entry.o
  .debug_line    0x0000000000000041      0x24a bio.o
  .debug_line    0x000000000000028b      0x879 console.o
@@ -763,9 +763,9 @@ OUTPUT(kernel elf32-i386)
  .debug_line    0x00000000000059e1      0x2a0 trap.o
  .debug_line    0x0000000000005c81      0x271 uart.o
  .debug_line    0x0000000000005ef2      0x32f vectors.o
- .debug_line    0x0000000000006221      0xb26 vm.o
+ .debug_line    0x0000000000006221      0xb1a vm.o
 
-.debug_info     0x0000000000000000    0x111e9
+.debug_info     0x0000000000000000    0x111f2
  .debug_info    0x0000000000000000       0x26 entry.o
  .debug_info    0x0000000000000026      0x457 bio.o
  .debug_info    0x000000000000047d     0x137d console.o
@@ -794,7 +794,7 @@ OUTPUT(kernel elf32-i386)
  .debug_info    0x000000000000e846      0xb19 trap.o
  .debug_info    0x000000000000f35f      0x550 uart.o
  .debug_info    0x000000000000f8af       0x26 vectors.o
- .debug_info    0x000000000000f8d5     0x1914 vm.o
+ .debug_info    0x000000000000f8d5     0x191d vm.o
 
 .debug_abbrev   0x0000000000000000     0x44fb
  .debug_abbrev  0x0000000000000000       0x14 entry.o
@@ -944,7 +944,7 @@ OUTPUT(kernel elf32-i386)
                                         0x3f2 (size before relaxing)
 
 .debug_loclists
-                0x0000000000000000     0x5576
+                0x0000000000000000     0x5580
  .debug_loclists
                 0x0000000000000000       0xe5 bio.o
  .debug_loclists
@@ -994,7 +994,7 @@ OUTPUT(kernel elf32-i386)
  .debug_loclists
                 0x0000000000003f07      0x1cd uart.o
  .debug_loclists
-                0x00000000000040d4     0x14a2 vm.o
+                0x00000000000040d4     0x14ac vm.o
 
 .debug_rnglists
                 0x0000000000000000      0x876
@@ -1145,7 +1145,7 @@ OUTPUT(kernel elf32-i386)
  .comment       0x0000000000000012       0x13 uart.o
  .comment       0x0000000000000012       0x13 vm.o
 
-.debug_frame    0x0000000000000000     0x1ef0
+.debug_frame    0x0000000000000000     0x1ef4
  .debug_frame   0x0000000000000000       0xc4 bio.o
  .debug_frame   0x00000000000000c4      0x18c console.o
  .debug_frame   0x0000000000000250       0x44 exec.o
@@ -1170,4 +1170,4 @@ OUTPUT(kernel elf32-i386)
  .debug_frame   0x0000000000001890      0x164 sysproc.o
  .debug_frame   0x00000000000019f4       0x94 trap.o
  .debug_frame   0x0000000000001a88       0x98 uart.o
- .debug_frame   0x0000000000001b20      0x3d0 vm.o
+ .debug_frame   0x0000000000001b20      0x3d4 vm.o

@@ -19,7 +19,7 @@ main(int argc, char *argv[])
   mprotect((void*) value, 1);
   munprotect((void*) value, 1);
 
-  printf(1, "\nRan munprotect. Attempting to change value now.\n");
+  printf(1, "\nRan munprotect. Now trying to change the value. (Should work.)\n");
 
   *value = 5;
 

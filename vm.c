@@ -407,7 +407,6 @@ mprotect(void *addr, int len) {
     return -1;
   }
 
-  //loop through all page entries to be changed
   pte_t *pte;
   int counter;
 

@@ -6,11 +6,8 @@
 int
 main(int argc, char *argv[])
 {
-  printf(1, "\nStart of mprotect test\n");
 
   int *value = (int*) sbrk(sizeof(int));
-
-  printf(1, "\nCreated Value Address\n");
 
   *value = 100;
 
